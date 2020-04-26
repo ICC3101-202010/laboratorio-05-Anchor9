@@ -24,8 +24,11 @@ namespace Lab5_Fmiranda
             server.Registered += mailSender.OnRegistered; //tienes que suscribir 
             server.PasswordChanged += mailSender.OnPasswordChanged;
             server.PasswordChanged += smsSender.OnPasswordChanged;
+
             //Se le envia correo cuando se registra, se envia mensaje cuando se registra.
 
+            mailSender.EmailSent += User.OnEmailSent;
+            User.EmailVerified += server.OnEmailVerified;
 
 
 
