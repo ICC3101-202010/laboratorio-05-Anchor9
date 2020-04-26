@@ -11,5 +11,17 @@ namespace Lab5_Fmiranda
     // y efectivamente verificar el correo
     //EmailOn emailSEnt
     {
+        //Defino delegate  (1)
+        public delegate void EmailVerifiedEventHandler(object source, EventArgs args);
+
+        //Defino  el evento  (2)
+        public event EmailVerifiedEventHandler EmailVerified;
+
+        //Publicar el evento (3)
+        public void OnEmailSent(object source, EventArgs e ) 
+        { 
+            //Aqui va el codigo...
+        }
+
     }
 }

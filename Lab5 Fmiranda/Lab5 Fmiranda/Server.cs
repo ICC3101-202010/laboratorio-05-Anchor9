@@ -48,6 +48,7 @@ namespace Lab5_Fmiranda
 
 
         public delegate void ChangePasswordEventHandler(object source, ChangePasswordEventArgs args);
+        
         public event ChangePasswordEventHandler PasswordChanged;
         protected virtual void OnPasswordChanged(string username, string email, string number) 
         {
@@ -57,6 +58,17 @@ namespace Lab5_Fmiranda
             }
         
         }
+
+        //CREAR metodo OnEmailVerified que muestre un mensaje breve en el  que se diga que se verifica el correo
+
+        public virtual void OnEmailVerified(object source, EventArgs e) 
+        { 
+            //Aqui va el codigo
+        
+        
+        }
+
+
         public DataBase Data 
         {
             get;  

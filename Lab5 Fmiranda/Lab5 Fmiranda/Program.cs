@@ -13,6 +13,7 @@ namespace Lab5_Fmiranda
         static void Main(string[] args)
         {
             // PRIMERO CERO LOS OBJETOS
+            User user = new User();
             DataBase database = new DataBase();
             Server server = new Server(database);
             MailSender mailSender = new MailSender(); //De lo unico que se encrga es mandar el correo
@@ -27,8 +28,8 @@ namespace Lab5_Fmiranda
 
             //Se le envia correo cuando se registra, se envia mensaje cuando se registra.
 
-            mailSender.EmailSent += User.OnEmailSent;
-            User.EmailVerified += server.OnEmailVerified;
+            mailSender.EmailSent += user.OnEmailSent;
+            user.EmailVerified += server.OnEmailVerified;
 
 
 
