@@ -1,0 +1,76 @@
+1) Creo una clase server que es la que administra las acciones
+en el server se maneja el registro las claves los usuarios etc
+
+
+2)EVENTOS, clases que no se conozcan se cominuquen entre si, osea que no hay acoplamiento, 
+sin metodos ni nada Es porque solo hace 1 vez, no necesita estar constantemente 
+con un atributo acá para que lo conozca,
+con un puro click ya voy a saber que necesito realizar cierta accion.
+
+
+3)El mailsender no ncesita estar acoplado para que sepa,
+por eso se usa eventos, disparo un solo evento específico --> registrarse
+osea, agregar informacion a la base de datos y los SENDER cuando
+escuchen eso, tienen que disparar el evento 
+
+
+
+4)PASO 1 ---- CREAR EL DELEGATE
+
+public delegate void RegisterEventHandler(object source, RegisterEventArgs args);
+
+Object --> tipo objeto, genérico 
+registereventargs es la info que se le pasa, nombre contraseña, numero, etc los datos,
+por eso es que se crea una clase "Registereventargs" con los atributos necesarios.
+
+
+
+5)PASO 2 ---- CREAMOS EL EVENTO QUE SE DISPARA CUANDO EL USUARIO SE REGISTRA
+
+public event RegisterEventHandler Registered;
+
+
+
+
+6)PASO 3 ----- PUBLICAR EL EVENTO, notar que si se quiere publicar el evento, se debe llamar
+El server dice, oye alguien se registró, a alguien le importa?? si --> a mailsender
+
+protected virtual void OnRegistered(string username, string password, string verificationLink, string email)
+
+Este metodo recibe el usuario,contraseña,verificacion y email para poder registrarse
+este es el metodo que hace la publicación.
+
+tengo que poner
+if (Registered != null) --> veo si hay alguien suscrito --> tiene que haber alguien que le importe la informacion 
+//si hay alguien registrado, le paso el evento
+Registered(this, new RegisterEventArgs() 
+                { VerificationLink = verificationLink, Password = password, Username = username, Email = email });
+//Esto es lo que necesito para informar, en el fondo es para que a alguien le importe
+
+
+
+7)Creo el metodo register, que es lo que va a tener toda la sintaxis que para poder hacer el registro
+en parte del codigo tengo que disparar el evento
+OnRegistered(username: usuario,password: password, verificationLink: verificationLink, email: email);
+
+
+8)En server es donde se ejecuta el codigo de registrarse, ahi se hace el registro, porque es el
+server
+
+
+
+
+9)En mailsender creo un evento que se llama OnRegistered
+
+public void OnRegistered(object source, RegisterEventArgs e)
+
+este metodo se llama igual a lo que está en server y este metodo que esta en mail-sender es el que mandará
+el mail con la informacion     """Bien hecho su mail es____, su usuario es____"""
+asi despues en program hay que hacer la suscripcion
+ 	
+Tiene que recibir los mismos parametros para que si sea el evento correcto
+
+
+
+)En program tengo que hacer suscripcion
+server.Registered += mailSender.OnRegistered;

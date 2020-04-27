@@ -43,7 +43,7 @@ namespace Lab5_Fmiranda
                 }
                 else if(data[1] == value[1]) 
                 {
-                    description = "mail alrdey exists";
+                    description = "mail alredy exists";
                 }
             }
             if (description == null)

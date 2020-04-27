@@ -32,7 +32,7 @@ namespace Lab5_Fmiranda
         public void OnRegistered(object source, RegisterEventArgs e) //Tiene que recibir los mismos paramteros para que si sea el evento correcto
         {
             Thread.Sleep(2000);
-            Console.WriteLine("Bien hecho");
+            Console.WriteLine("Bien hecho este es el metodo que envia diciendo 'su mail es' gracias al registro");
 
         }
 

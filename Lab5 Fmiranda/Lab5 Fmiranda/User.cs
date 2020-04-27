@@ -17,11 +17,34 @@ namespace Lab5_Fmiranda
         //Defino  el evento  (2)
         public event EmailVerifiedEventHandler EmailVerified;
 
-        //Publicar el evento (3)
-        public void OnEmailSent(object source, EventArgs e ) 
-        { 
-            //Aqui va el codigo...
+        //Publico el evento (3)
+        protected virtual void OnEmailVerified()
+        {
+            if (EmailVerified != null)
+            {
+                EmailVerified(this, EventArgs.Empty);
+            }
         }
+
+        public void OnEmailSent(object source, EventArgs e) 
+        {
+            Console.WriteLine("Do you want to verify your email? \n[1]Yes \n[2]No");
+            string answer = Console.ReadLine();
+            while (answer != "1" && answer != "2") 
+            {
+                Console.WriteLine("Invalid, re-enter");
+            }
+            if (answer == "1") 
+            {
+
+                //Aqui se gatilla el evento
+                OnEmailVerified();
+            }
+            else 
+            {
+                Console.WriteLine("Continue");
+            }
+        }   
 
     }
 }

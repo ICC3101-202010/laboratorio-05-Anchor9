@@ -40,7 +40,8 @@ namespace Lab5_Fmiranda
             if (Registered != null)//veo si hay alguien suscrito --> tiene que haber alguien que le importe la informacion 
             {
                 //si hay alguien registrado, le paso el evento
-                Registered(this, new RegisterEventArgs() { VerificationLink = verificationLink, Password = password, Username = username, Email = email });
+                Registered(this, new RegisterEventArgs() 
+                { VerificationLink = verificationLink, Password = password, Username = username, Email = email });
                 //Esto es lo que ncesito para informar
             }
         }
@@ -62,8 +63,8 @@ namespace Lab5_Fmiranda
         //CREAR metodo OnEmailVerified que muestre un mensaje breve en el  que se diga que se verifica el correo
 
         public virtual void OnEmailVerified(object source, EventArgs e) 
-        { 
-            //Aqui va el codigo
+        {
+            Console.WriteLine("Your mail has been verified");
         
         
         }
