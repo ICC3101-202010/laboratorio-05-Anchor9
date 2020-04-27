@@ -32,14 +32,14 @@ namespace Lab5_Fmiranda
         public void OnRegistered(object source, RegisterEventArgs e) //Tiene que recibir los mismos paramteros para que si sea el evento correcto
         {
             Thread.Sleep(2000);
-            Console.WriteLine("Bien hecho este es el metodo que envia diciendo 'su mail es' gracias al registro");
+            Console.WriteLine($"\nMail sent to {e.Email}: \nThanks to sing up, {e.Username} \nTo check your email click {e.VerificationLink}    ");
 
         }
 
         public void  OnPasswordChanged(object source, ChangePasswordEventArgs e) 
         {
             Thread.Sleep(2000);
-            Console.WriteLine("Bien hecho x2");
+            Console.WriteLine($"\n Correo enviado a {e.Email}: \n {e.Username}, your password has benn changed \n");
         }
 
         //Tengo que crear metodo que se dispare despues de enviar el correo al ususario

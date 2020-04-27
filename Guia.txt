@@ -72,5 +72,7 @@ Tiene que recibir los mismos parametros para que si sea el evento correcto
 
 
 
-)En program tengo que hacer suscripcion
+
+
+10)En program tengo que hacer suscripcion
 server.Registered += mailSender.OnRegistered;

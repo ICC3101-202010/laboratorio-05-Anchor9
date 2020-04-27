@@ -10,10 +10,10 @@ namespace Lab5_Fmiranda
 {
     public class SMSsender
     {
-        public void OnPasswordChanged(object source, ChangePasswordEventArgs args) 
+        public void OnPasswordChanged(object source, ChangePasswordEventArgs e) 
         {
             Thread.Sleep(2000);
-            Console.WriteLine("Bien hecho smssender");
+            Console.WriteLine($"\nSMS enviado a {e.Number}: \n {e.Username}, your password has been changed \n");
         }
         public SMSsender()
         {
